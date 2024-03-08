@@ -94,7 +94,7 @@ DATABASES = {
 保存文件：保存 settings.py 文件并关闭编辑器。  
 
 #### 2.2运行迁移：
-在命令行中执行 ```python manage.py makemigrations``` 和 ```python manage.py migrate``` 命令，创建数据库表结构和进行数据库迁移操作。  
+在命令行中执行 ```python manage.py makemigrations``` ```python manage.py makemigrations webapp01``` 和 ```python manage.py migrate``` 命令，创建数据库表结构和进行数据库迁移操作。  
 
 ### 3.启动 Django 项目
 进入到刚刚创建的项目目录：  
