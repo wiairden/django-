@@ -3,7 +3,7 @@
 
 ## 使用教程:  
 
-### 1.安装django与python环境  
+### 1. 安装django与python环境  
 
 #### 1.1安装 Python  
 
@@ -57,7 +57,7 @@ show tables;
 desc +table_name
 ```
 
-### 使用教程部分结束  
+### 非使用教程部分结束  
 
 ### 2.迁移数据库  
 #### 2.1设置数据库：
