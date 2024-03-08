@@ -44,7 +44,10 @@ show databases;
 ```
 use +id  
 ```
-
+删除数据库  
+```
+DROP DATABASE database_name;
+```
 查看表  
 ```
 show tables;
