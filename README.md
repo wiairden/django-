@@ -23,7 +23,29 @@
 
 ### 2.迁移数据库  
 #### 2.1设置数据库：
-编辑项目中的 settings.py 文件，配置数据库连接信息，包括数据库类型、主机名、用户名、密码等。
+在 Django 项目的 settings.py 文件中配置 MySQL 数据库信息，需要做以下几个步骤：  
+
+打开 settings.py 文件：在 Django 项目中找到 settings.py 文件    
+
+配置 DATABASES 设置：在 settings.py 文件中找到名为 DATABASES 的设置项，通常位于文件的顶部或底部。根据MySQL 数据库信息，配置 DATABASES 设置如下：  
+
+```
+python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mydatabase',      # 数据库名称
+        'USER': 'myuser',          # 用户名
+        'PASSWORD': 'mypassword',  # 密码
+        'HOST': 'localhost',       # 主机地址，如果是本地数据库可以使用 localhost
+        'PORT': '',                # 默认端口号
+    }
+}
+```
+
+根据你的实际 MySQL 数据库信息，修改上述代码中的 'NAME'、'USER'、'PASSWORD' 等键对应的值为数据库名称、用户名和密码，并根据需要修改 'HOST' 和 'PORT' 的值。  
+
+保存文件：保存 settings.py 文件并关闭编辑器。  
 
 #### 2.2运行迁移：
 在命令行中执行 ```python manage.py makemigrations``` 和 ```python manage.py migrate``` 命令，创建数据库表结构和进行数据库迁移操作。  
