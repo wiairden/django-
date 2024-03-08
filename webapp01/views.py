@@ -140,7 +140,7 @@ def task_add(request):
         rw.objects.create(
             rw_name=rw_name1,
             rw_fb_username=rw_user.get('name'),
-            rw_fb_userid_id=rw_user.get('id'),
+            rw_fb_userid=rw_user.get('id'),
             rw_startdata=rw_startdata1,
             rw_enddata=rw_enddata1,
             rw_context=rw_context1,
