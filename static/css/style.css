@@ -1,0 +1,127 @@
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table caption{
+    font-size: 2em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+th,td{
+    border: 1px solid #999;
+    text-align: center;
+    padding: 20px 0;
+}
+
+table thead tr{
+    background-color: #008c8c;
+    color: #fff;
+}
+
+table tbody tr:nth-child(odd){
+    background-color: #eee;
+}
+
+table tbody tr:hover{
+    background-color: #ccc;
+}
+
+table tbody tr td:first-child{
+    color: #f40;
+}
+
+table tfoot tr td{
+    text-align: right;
+    padding-right: 20px;
+}
+.niceButton3 {
+    background-color: #1795bb;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.niceButton3:hover {
+    background-color: #fff;
+    color: #1795bb;
+    border: 1px solid #ccc;
+}
+
+.niceButton2{
+    background-color:#1795bb;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    display: inline-block;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.niceButton2:hover {
+    background-color: #fff;
+    color: #1795bb;
+    border: 1px solid #ccc; 
+    /* 外部盒子,控制搜索框在页面中的位置 */
+}
+.searchmain{
+    height: 100px;
+    display:flex;
+}
+.searchcontainer{
+    height: 100px;
+    width:100%;  
+    display : flex;
+    justify-content: right;    /*水平方向居中*/
+    align-items: center;          /*垂直方向居中*/
+}
+.login{
+    display:flex;
+    width:50%;
+    justify-content: center;    /*水平方向居中*/
+    align-items: center;          /*垂直方向居中*/
+        }
+        /* 搜索框样式 */
+.search{
+    width: 400px;
+    height: 45px;
+    border-radius: 30px 0px 0px 30px;  
+    padding-left: 50px; 
+    color:darkgray;
+    font-size: 18px; 
+    margin:0;
+}
+.search::placeholder{
+    color:#ccc
+}
+/* 搜索按钮样式 */
+.btnsearch{
+    width: 100px;
+    height: 50px;
+    border: none;
+    background-color: coral;
+    color: #fff;
+    border-radius: 0px 22px 22px 0px;
+    font-size: 18px;
+    cursor: pointer;
+    padding-bottom: 3px;
+}
+/* 按钮悬浮时样式 */
+.btnsearch:hover{
+    background-color: #ff5900;
+}
+.error{
+    color:red;
+}

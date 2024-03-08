@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>添加用户</h1>
+    <body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        用户名：<input type="text" name="user_name">
+        <span style="color:red;" class="error" >{{form.error}}</span>
+        密码：<input type="text" name="user_password">
+        手机号：<input type="text" name="user_number">
+        年龄：<input type="text"name="user_age">
+        <input type="submit" value="注册">
+    </form>
+</body>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+ <meta http-equiv="Cache-Control" content="max-age=7200" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+</head>
+
+<body>
+    <h1 align="center">主页</h1>
+        
+    <div class="searchmain">
+        <div class="searchcontainer">
+            <form action="search1" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="搜索" class="search" name="search"><input type="submit" class="btnsearch" value="搜索">
+        </div>
+        <div class="login">
+            <a class="niceButton3" href="/user/add">注册</a>
+            <a class="niceButton3" href="/user/login">登录</a>        
+        </div>
+    </div>
+    
+    <table>
+    <thead>
+        <tr>
+          <th>任务名称</th>
+          <th>发布者</th>
+          <th>发布日期</th>
+          <th>截止日期</th>
+          <th>操作</th>
+        </tr>
+    </thead>
+            {% for i in rw_list%}
+                <tr>
+                <td>{{i.rw_name}}</td>
+                <td>{{i.rw_fb_username}}</td>
+                <td>{{i.rw_startdata}}</td>
+                <td>{{i.rw_enddata}}</td>
+                <td>
+                <a class="niceButton2"href="http://127.0.0.1:8000/task_detail/?rw_id={{i.rw_id}}&login={{login}}" style="text-decoration: none;">详情</a>
+                </td>
+                </tr>
+            {% endfor %} 
+    </table>
+    <div>
+</body>
+</html>

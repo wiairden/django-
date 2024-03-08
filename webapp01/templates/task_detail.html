@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+ <meta http-equiv="Cache-Control" content="max-age=7200" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+</head>
+<body>
+<h1 style="display: flex; justify-content: center; align-items: center; height: 50px;">任务详情</h1>
+<div style="margin-left: auto; margin-right: 0; width: 10%;">
+{% if login %}
+<a href="http://127.0.0.1:8000" class="niceButton3" >返回任务列表</a>
+{% else %}
+<a href="http://127.0.0.1:8000/login_success" class="niceButton3" >返回任务列表</a>
+{% endif %}
+</div>
+ <table>
+    <thead>
+        <tr>
+          <th>任务名称</th>
+          <th>任务内容</th>
+          <th>发布者</th>
+          <th>发布日期</th>
+          <th>截止日期</th>
+          <th>接收者</th>
+          <th>接收日期</th>
+          <th>是否被接取</th>
+          <th>是否完成任务</th>
+        </tr>
+    </thead>
+            {% for i in rw_detail%}
+                <tr>
+                <td>{{i.rw_name}}</td>
+                <td>{{i.rw_context}}</td>
+                <td>{{i.rw_fb_username}}</td>
+                <td>{{i.rw_startdata}}</td>
+                <td>{{i.rw_enddata}}</td>
+                <td>{{i.rw_js_username|default_if_none:""}}</td>
+                <td>{{i.rw_js_data|default_if_none:""}}</td>
+                <td>{% if i.rw_js_state %}是{% else %}否{% endif %}</td>
+                <td>{% if i.rw_state %}是{% else %}否{% endif %}</td>
+                </tr>
+            {% endfor %} 
+    </table>
+</body>
+</html>
