@@ -15,7 +15,7 @@
 打开命令行（Windows 中使用 PowerShell 或 cmd，Mac 和 Linux 使用终端）。
 使用 pip 工具安装 Django。运行以下命令：  
 
->pip install django
+```pip install django```
 ### 2.启动 Django 项目
 进入到刚刚创建的项目目录：  
 
@@ -25,4 +25,4 @@
 
 >python manage.py runserver 8000
 
-在浏览器中访问 (http://127.0.0.1:8000/)，如果看到 Django 的欢迎页面，则说明项目已成功启动。  
+在浏览器中访问 http://127.0.0.1:8000/，  如果看到 Django 的欢迎页面，则说明项目已成功启动。  
