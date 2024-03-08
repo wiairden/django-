@@ -42,7 +42,22 @@ DATABASES = {
 }
 ```
 
-根据你的实际 MySQL 数据库信息，修改上述代码中的 'NAME'、'USER'、'PASSWORD' 等键对应的值为数据库名称、用户名和密码，并根据需要修改 'HOST' 和 'PORT' 的值。  
+本项目的DATABASES为:  
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',    # 数据库引擎
+        'NAME': 'root', # 数据库名称
+        'HOST': '127.0.0.1', # 数据库地址，本机 ip 地址 127.0.0.1 
+        'PORT': 3306, # 端口 
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': '123456', # 数据库密码
+    }
+}
+
+```
+
+根据实际 MySQL 数据库信息，修改上述代码中的 'NAME'、'USER'、'PASSWORD' 等键对应的值为数据库名称、用户名和密码，并根据需要修改 'HOST' 和 'PORT' 的值。  
 
 保存文件：保存 settings.py 文件并关闭编辑器。  
 
