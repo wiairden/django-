@@ -16,6 +16,10 @@
 使用 pip 工具安装 Django。运行以下命令：  
 
 ```pip install django```
+#### 1.3安装MYSQL  
+
+下载 MySQL 安装程序：前往 MySQL 官方网站（https://dev.mysql.com/downloads/mysql/）下载适用于你的操作系统的 MySQL 安装程序。  
+运行安装程序：双击下载的安装程序并按照安装向导的指示进行操作。在安装过程中，你可以选择安装类型、安装位置和其他选项。
 ### 2.启动 Django 项目
 进入到刚刚创建的项目目录：  
 
