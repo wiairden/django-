@@ -30,7 +30,6 @@
 配置 DATABASES 设置：在 settings.py 文件中找到名为 DATABASES 的设置项，通常位于文件的顶部或底部。根据MySQL 数据库信息，配置 DATABASES 设置如下：  
 
 ```
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
