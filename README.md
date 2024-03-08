@@ -19,10 +19,10 @@
 ### 2.启动 Django 项目
 进入到刚刚创建的项目目录：  
 
->cd web
+```cd web```
 
 运行以下命令启动开发服务器：  
 
->python manage.py runserver 8000
+```python manage.py runserver 8000```
 
 在浏览器中访问 http://127.0.0.1:8000/ ，如果看到 Django 的欢迎页面，则说明项目已成功启动。  
