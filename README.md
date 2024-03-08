@@ -20,7 +20,13 @@
 
 下载 MySQL 安装程序：前往 MySQL 官方网站 (https://dev.mysql.com/downloads/mysql/) 下载适用于你的操作系统的 MySQL 安装程序。  
 运行安装程序：双击下载的安装程序并按照安装向导的指示进行操作。在安装过程中，你可以选择安装类型、安装位置和其他选项。
-#### 1.4创建数据库 
+#### 1.4 安装pymysql  
+
+```
+pip install pymysql
+```
+
+#### 1.5创建数据库 
 ```
 CREATE DATABASE root
   CHARACTER SET utf8mb4
