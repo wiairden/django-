@@ -1,4 +1,6 @@
 # 毕设做的Django任务平台网页
+
+
 ##使用教程:
 1.安装django与python环境
 1.1安装 Python
