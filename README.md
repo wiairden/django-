@@ -52,6 +52,11 @@ DROP DATABASE database_name;
 ```
 show tables;
 ```
+查看表中字段  
+```
+desc +table_name
+```
+
 
 ### 2.迁移数据库  
 #### 2.1设置数据库：
