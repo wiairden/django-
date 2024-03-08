@@ -1,7 +1,8 @@
-# 毕设做的Django任务平台网页
+# 毕设做的Django任务平台网页  
 
 
-##使用教程:
+## 使用教程:  
+
 1.安装django与python环境
 1.1安装 Python
 访问 https://www.python.org/downloads/ 下载最新版本的 Python 并安装。
