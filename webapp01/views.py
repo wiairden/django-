@@ -51,10 +51,14 @@ def userinfo1(request):
 
 
 ##主页
-def welcome(welcome):
-    rw_list = rw.objects.filter(rw_js_state=False)
-    login = False
-    return render(welcome,"welcome.html",{'rw_list':rw_list,'login':login})
+def welcome(request):
+    info = request.session.get('info')
+    if not info:
+        rw_list = rw.objects.filter(rw_js_state=False)
+        login = False
+        return render(request,"welcome.html",{'rw_list':rw_list,'login':login})
+    else:
+        return redirect("http://127.0.0.1:8000/login_success")
 
 
 def insert(request):
