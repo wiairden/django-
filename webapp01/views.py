@@ -6,6 +6,7 @@ from django.db.models import Q
 from django import forms
 from datetime import datetime, timedelta
 import hashlib
+from django.contrib import messages
 
 class LoginForm(forms.Form):
     user_name=forms.CharField(
@@ -18,7 +19,8 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput,
         required=True
     )
-    errror = ""
+    error_login = ""
+    error_password=""
     
 
 # Create your views here.
@@ -70,6 +72,9 @@ def delete(request):
 
 ##删除任务
 def rw_delete(request):
+    result = is_login(request)
+    if result:
+        return result
     rw_id1 = request.GET.get('rw_id')
     print(rw_id1)
     models.rw.objects.filter(rw_id = rw_id1).delete()
@@ -99,7 +104,7 @@ def user_login(request):
         # print(form.cleaned_data['user_name'],clean_user_password(form.cleaned_data['user_password']))
         # print(yz)
         if not yz:
-            form.error=("用户名或密码错误！")
+            form.error_password=("密码错误！")
             return render(request,"user_login.html",{'form':form})
         else:
             request.session["info"] = {'id':yz.user_id,'name':yz.user_name}
@@ -108,16 +113,33 @@ def user_login(request):
             rw_list1 = rw.objects.filter(rw_js_state = False)
             return redirect("http://127.0.0.1:8000/login_success",{'name1':request.session["info"],'rw_list':rw_list1})
     else:
-        form.error=("不能为空!")
+        form.error_login=("不能为空!")
+        form.error_password = ("不能为空!")
         return render(request,"user_login.html",{'form':form})
+##判断是否为登录状态
+def is_login(request):
+    info = request.session.get('info')
+    if not info:
+        form = LoginForm()
+        form.error_login = "请登录账号！"
+        messages.error(request, form.error_login)  # 将错误信息存储到消息中
+        return redirect('/user/login')
+
 ##登录成功页面
 def login_success(request):
+    ##是否为登录状态用法
+    result = is_login(request)
+    if result:
+        return result
     rw_user = request.session.get('info')
     rw_list1 = rw.objects.filter(Q(rw_js_state = False) & Q(rw_state=False))
     return render(request,"login_success.html",{'name1':rw_user,'rw_list':rw_list1})
 
 ##添加任务页面
 def task_add(request):
+    result = is_login(request)
+    if result:
+        return result
     current_time = datetime.now()
     year = current_time.year
     month = current_time.month
@@ -149,6 +171,9 @@ def task_add(request):
     return render(request,"task_add.html",{"time1":time1,"time2":time2})
 ##我的任务页面
 def task_mytask(request):
+    result = is_login(request)
+    if result:
+        return result
     rw_user = request.session.get('info')
     rw_fb_username1=rw_user.get('name'),
     rw_list1 = rw.objects.filter(rw_fb_username=rw_fb_username1[0])
@@ -167,6 +192,9 @@ def clear_session(request):
     return redirect("http://127.0.0.1:8000/")
 ##接收任务
 def js_rw(request):
+    result = is_login(request)
+    if result:
+        return result
     rw_id1 = request.GET.get('rw_id')
     rw.objects.filter(rw_id = rw_id1).update(rw_js_state = "True")
     rw_user = request.session.get('info')
@@ -188,6 +216,9 @@ def js_rw(request):
     return redirect("http://127.0.0.1:8000/login_success")
 ##删除接收任务
 def del_js_rw(request):
+    result = is_login(request)
+    if result:
+        return result
     rw_id1 = request.GET.get('rw_id')
     rw_js_username1=None
     rw_js_userid1=None
@@ -205,6 +236,9 @@ def del_js_rw(request):
     return render(request,"task_mytask.html",{'rw_list':rw_list1,'rw_jslist':rw_list2})
 ##完成任务
 def wc_rw(request):
+    result = is_login(request)
+    if result:
+        return result
     rw_id1 = request.GET.get('rw_id')
     rw.objects.filter(rw_id = rw_id1).update(rw_state = "True")
     rw_user = request.session.get('info')
