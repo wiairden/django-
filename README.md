@@ -1,4 +1,4 @@
-# 毕设做的Django任务平台网页  
+# Django任务平台网页  
 
 
 ## 使用教程:  
@@ -32,7 +32,7 @@ CREATE DATABASE root
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_general_ci;
 ```
-### 非使用教程部分
+#### 非使用教程部分
 查看数据库  
 
 ```
@@ -57,7 +57,7 @@ show tables;
 desc +table_name
 ```
 
-### 非使用教程部分结束  
+#### 非使用教程部分结束  
 
 ### 2.迁移数据库  
 #### 2.1设置数据库：
