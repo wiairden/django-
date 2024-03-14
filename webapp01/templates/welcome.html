@@ -41,7 +41,7 @@
                 <td>{{i.rw_startdata}}</td>
                 <td>{{i.rw_enddata}}</td>
                 <td>
-                <a class="niceButton2"href="http://127.0.0.1:8000/task_detail/?rw_id={{i.rw_id}}&login={{login}}" style="text-decoration: none;">详情</a>
+                <a class="niceButton2"href="http://{{ GLOBAL_IP }}:{{ GLOBAL_PORT }}/task_detail/?rw_id={{i.rw_id}}&login={{login}}" style="text-decoration: none;">详情</a>
                 </td>
                 </tr>
             {% endfor %} 

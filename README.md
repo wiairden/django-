@@ -96,10 +96,16 @@ DATABASES = {
 
 根据实际 MySQL 数据库信息，修改上述代码中的 'NAME'、'USER'、'PASSWORD' 等键对应的值为数据库名称、用户名和密码，并根据需要修改 'HOST' 和 'PORT' 的值。  
 
-保存文件：保存 settings.py 文件并关闭编辑器。  
 
 #### 2.2运行迁移：
 在命令行中执行 ```python manage.py makemigrations``` ```python manage.py makemigrations webapp01``` 和 ```python manage.py migrate``` 命令，创建数据库表结构和进行数据库迁移操作。  
+#### 2.3局域网访问：
+1.在settings.py设置ALLOWED_HOSTS
+```
+ALLOWED_HOSTS = ['*',]
+```  
+这个代表允许所有的ip访问你这个Django项目
+
 
 ### 3.启动 Django 项目
 进入到刚刚创建的项目目录：  
@@ -117,7 +123,8 @@ DATABASES = {
 #### 1.1 注册用户:
 在注册的按钮中注册用户
 ![Alt text](images/1-1.png)
-### 1.2登录用户:
+#### 1.2登录用户:  
+通过登录页面成功登录
 
 ### 2. 搜索功能:
 ### 3. 查看任务功能:

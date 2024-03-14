@@ -7,6 +7,26 @@ from django import forms
 from datetime import datetime, timedelta
 import hashlib
 from django.contrib import messages
+import sys
+
+# 从命令行参数获取 IP 地址和端口号
+if 'runserver' in sys.argv:
+    try:
+        runserver_index = sys.argv.index('runserver')
+        ip, port = sys.argv[runserver_index + 1].split(':')
+        # 将 IP 地址和端口号保存到全局变量中
+        GLOBAL_IP = ip
+        GLOBAL_PORT = port
+    except (IndexError, ValueError):
+        pass
+def my_view():
+    # 获取 IP 地址和端口号
+    if len(sys.argv) > 2:
+        ip_port = sys.argv[2]
+        ip, port = ip_port.split(':')
+        return (ip,port)
+    else:
+        return HttpResponse("IP and Port not specified")
 
 class LoginForm(forms.Form):
     user_name=forms.CharField(
@@ -41,7 +61,9 @@ def user_add(request):
                 return render(request,"user_add.html",{'form':form})
         else:
             userinfo.objects.create(user_name=user_name1,user_password=user_password1,user_number=user_number1,user_age=user_age1)
-            return redirect("http://127.0.0.1:8000")
+            redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}"
+            return redirect(redirect_url)
+            # return redirect("http://127.0.0.1:8000")
     return render(request,"user_add.html")
 
 ##用户界面
@@ -56,14 +78,19 @@ def welcome(request):
     if not info:
         rw_list = rw.objects.filter(rw_js_state=False)
         login = False
-        return render(request,"welcome.html",{'rw_list':rw_list,'login':login})
+        print(GLOBAL_IP,GLOBAL_PORT)
+        return render(request,"welcome.html",{'rw_list':rw_list,'login':login,"GLOBAL_IP":GLOBAL_IP,"GLOBAL_PORT":GLOBAL_PORT})
     else:
-        return redirect("http://127.0.0.1:8000/login_success")
+        redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/login_success"
+        return redirect(redirect_url)
+        # return redirect("http://127.0.0.1:8000/login_success")
 
 
 def insert(request):
-    books = models.userinfo.objects.create(user_name="wiair",user_password=123,user_number=123344)
-    return redirect("http://127.0.0.1:8000/userinfo")
+    user = models.userinfo.objects.create(user_name="wiair",user_password=123,user_number=123344)
+    redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/userinfo"
+    return redirect(redirect_url)
+    # return redirect("http://127.0.0.1:8000/userinfo")
 
 
 ##删除用户
@@ -71,7 +98,9 @@ def delete(request):
     user_id1 = request.GET.get('user_id')
     print(user_id1)
     models.userinfo.objects.filter(user_id = user_id1).delete()
-    return redirect("http://127.0.0.1:8000/userinfo")
+    redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/userinfo"
+    return redirect(redirect_url)
+    # return redirect("http://127.0.0.1:8000/userinfo")
 
 
 ##删除任务
@@ -82,7 +111,9 @@ def rw_delete(request):
     rw_id1 = request.GET.get('rw_id')
     print(rw_id1)
     models.rw.objects.filter(rw_id = rw_id1).delete()
-    return redirect("http://127.0.0.1:8000/task/mytask")
+    redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/task/mytask"
+    return redirect(redirect_url)
+    # return redirect("http://127.0.0.1:8000/task/mytask")
 
 
 
@@ -115,7 +146,10 @@ def user_login(request):
             # print(request.session["info"]['id'])
             # print(request.session["info"]['id'])
             rw_list1 = rw.objects.filter(rw_js_state = False)
-            return redirect("http://127.0.0.1:8000/login_success",{'name1':request.session["info"],'rw_list':rw_list1})
+            redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/login_success"
+            params = {'name1': request.session["info"], 'rw_list': rw_list1}
+            return redirect(redirect_url, params)
+            # return redirect()
     else:
         form.error_login=("不能为空!")
         form.error_password = ("不能为空!")
@@ -137,7 +171,7 @@ def login_success(request):
         return result
     rw_user = request.session.get('info')
     rw_list1 = rw.objects.filter(Q(rw_js_state = False) & Q(rw_state=False))
-    return render(request,"login_success.html",{'name1':rw_user,'rw_list':rw_list1})
+    return render(request,"login_success.html",{'name1':rw_user,'rw_list':rw_list1,"GLOBAL_IP":GLOBAL_IP,"GLOBAL_PORT":GLOBAL_PORT})
 
 ##添加任务页面
 def task_add(request):
@@ -171,7 +205,8 @@ def task_add(request):
             rw_enddata=rw_enddata1,
             rw_context=rw_context1,
             )
-        return redirect("http://127.0.0.1:8000/login_success")
+        redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/login_success"
+        return redirect(redirect_url)
     return render(request,"task_add.html",{"time1":time1,"time2":time2})
 ##我的任务页面
 def task_mytask(request):
@@ -182,18 +217,19 @@ def task_mytask(request):
     rw_fb_username1=rw_user.get('name'),
     rw_list1 = rw.objects.filter(rw_fb_username=rw_fb_username1[0])
     rw_list2 = rw.objects.filter(Q(rw_js_username=rw_fb_username1[0]) & Q(rw_state=False))
-    return render(request,"task_mytask.html",{'rw_list':rw_list1,'rw_jslist':rw_list2})
+    return render(request,"task_mytask.html",{'rw_list':rw_list1,'rw_jslist':rw_list2,"GLOBAL_IP":GLOBAL_IP,"GLOBAL_PORT":GLOBAL_PORT})
 ##任务详情页
 def task_detail(request):
     rw_id1 = request.GET.get('rw_id')
     login1 = request.GET.get('login')
     print(login1)
     rw1 = rw.objects.filter(rw_id=rw_id1)
-    return render(request,"task_detail.html",{"rw_detail":rw1,"login":login1})
+    return render(request,"task_detail.html",{"rw_detail":rw1,"login":login1,"GLOBAL_IP":GLOBAL_IP,"GLOBAL_PORT":GLOBAL_PORT})
 ##注销
 def clear_session(request):
     request.session.clear()
-    return redirect("http://127.0.0.1:8000/")
+    redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}"
+    return redirect(redirect_url)
 ##接收任务
 def js_rw(request):
     result = is_login(request)
@@ -217,7 +253,8 @@ def js_rw(request):
     )
     # +类.objects.create(+列="内容")
     ##+类.objects.filter(+列="内容"(查找的内容)).update("修改的内容")
-    return redirect("http://127.0.0.1:8000/login_success")
+    redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/login_success"
+    return redirect(redirect_url)
 ##删除接收任务
 def del_js_rw(request):
     result = is_login(request)
@@ -249,7 +286,9 @@ def wc_rw(request):
     rw_fb_username1=rw_user.get('name'),
     rw_list1 = rw.objects.filter(rw_fb_username=rw_fb_username1[0])
     rw_list2 = rw.objects.filter(rw_js_username=rw_fb_username1[0])
-    return redirect("http://127.0.0.1:8000/task/mytask",{'rw_list':rw_list1,'rw_jslist':rw_list2})
+    redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/task/mytask"
+    params = {'name1': request.session["info"], 'rw_list': rw_list1,'rw_jslist':rw_list2}
+    return redirect(redirect_url, params)
 ##搜索功能
 def search1(request):
     if request.method=="POST":

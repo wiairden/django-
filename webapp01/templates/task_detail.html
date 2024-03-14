@@ -11,9 +11,9 @@
 <h1 style="display: flex; justify-content: center; align-items: center; height: 50px;">任务详情</h1>
 <div style="margin-left: auto; margin-right: 0; width: 10%;">
 {% if login %}
-<a href="http://127.0.0.1:8000" class="niceButton3" >返回任务列表</a>
+<a href="http://{{ GLOBAL_IP }}:{{ GLOBAL_PORT }}" class="niceButton3" >返回任务列表</a>
 {% else %}
-<a href="http://127.0.0.1:8000/login_success" class="niceButton3" >返回任务列表</a>
+<a href="http://{{ GLOBAL_IP }}:{{ GLOBAL_PORT }}/login_success" class="niceButton3" >返回任务列表</a>
 {% endif %}
 </div>
  <table>
