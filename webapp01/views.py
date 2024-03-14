@@ -297,6 +297,6 @@ def search1(request):
         print(request.POST.get('search'))
         rw_search1 = rw.objects.filter(rw_name=search)
         user_search1 = rw.objects.filter(rw_fb_username=search)
-        return render(request,"search1.html",{'rw_search': rw_search1,'user_search':user_search1,'login':login1})
+        return render(request,"search1.html",{'rw_search': rw_search1,'user_search':user_search1,'login':login1,'search':search,"GLOBAL_IP":GLOBAL_IP,"GLOBAL_PORT":GLOBAL_PORT})
     else:
         return HttpResponse("ERROR!请使用POST方法访问内容")

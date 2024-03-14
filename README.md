@@ -108,6 +108,7 @@ ALLOWED_HOSTS = ['*',]
 
 
 ### 3.启动 Django 项目
+#### 3.1 本地启动
 进入到刚刚创建的项目目录：  
 
 ```cd web```
@@ -118,16 +119,84 @@ ALLOWED_HOSTS = ['*',]
 
 在浏览器中访问 http://127.0.0.1:8000/ ，如果看到 项目页面，则说明项目已成功启动。  
 
+
+#### 3.2局域网中启动：  
+
+修改settings.py文件的ALLOWED_HOSTS  
+
+```ALLOWED_HOSTS = ['*',]```  
+
+运行以下命令启动开发服务器：  
+
+```python manage.py runserver +ip +port```  
+
+ip可以填局域网内ip，端口只要不冲突就能正常开启如图
+
+![Alt text](images/1-2.png)
+
+
 ## 具体功能介绍
-### 1. 注册登录功能:
+### 1.注册登录功能:
 #### 1.1 注册用户:
-在注册的按钮中注册用户
+#### 在注册的按钮中注册用户
 ![Alt text](images/1-1.png)
 #### 1.2登录用户:  
-通过登录页面成功登录
+#### 通过登录页面成功登录
+![Alt text](images/1-3.png)
+#### 登录成功:
+![Alt text](images/1-4.png)
+### 2.搜索功能:
+#### 2.1根据用户名搜索：
+![Alt text](images/2-1.png)
+#### 2.2根据任务名称搜索:
+![Alt text](images/2-2.png)
+### 3.发布任务功能:
+![Alt text](images/3-1.png)
+#### 3.1发布成功
+![Alt text](images/3-2.png)
+### 4.接取任务功能:
+#### 4.1点击接受接取任务
+![Alt text](images/4-1.png)
+#### 4.2在我的任务中查看接取任务:
+![Alt text](images/4-2.png)
+#### 4.3发布者删除后任务消失在任务列表:
 
-### 2. 搜索功能:
-### 3. 查看任务功能:
-### 4. 接取任务功能:
-### 5. 完成任务功能:
-### 6. 错误提示功能:
+![Alt text](images/4-3.png)
+
+### 5.完成任务功能:
+![Alt text](images/5-1.png)
+#### 5.1 user3完成后会从接取任务中消失，同时user1任务列表更新任务状态:
+![Alt text](images/5-2.png)
+
+
+### 6.查看任务功能:
+![Alt text](images/6-1.png)
+
+### 7.删除任务功能:
+#### 7.1删除了任务1
+![Alt text](images/7-1.png)
+
+### 8.错误提示功能:
+#### 8.1用户名和密码为空的提示:
+![Alt text](images/8-1.png)
+#### 8.2密码错误提示:
+![Alt text](images/8-2.png)
+#### 8.2未登录进入登录页面提示:
+![Alt text](images/8-3.png)
+
+### 9.其他功能:
+#### 9.1局域网中部署：
+    如注释
+
+![Alt text](images/9-1.png)  
+
+    局域网运行:
+![Alt text](images/9-1-1.png)  
+
+#### 9.2md5密码加盐：
+![Alt text](images/9-2.png)  
+
+#### 9.3数据库数据转义：
+![Alt text](images/9-3.png)  
+
+
