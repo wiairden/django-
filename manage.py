@@ -20,4 +20,4 @@ def main():
 
 if __name__ == '__main__':
     main()
- ##runserver 192.168.50.172:8000
+ ##runserver

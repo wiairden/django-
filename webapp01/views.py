@@ -50,21 +50,26 @@ def hello(request):
 def user_add(request):
     if request.method=="POST":
         form = LoginForm()
-        user_name1 = request.POST.get('user_name')
-        user_password1 = request.POST.get('user_password')
-        user_number1 = request.POST.get('user_number')
-        user_age1 = request.POST.get('user_age')
-        username = userinfo.objects.filter(user_name=user_name1).first()
-        if username is not None :
-            if user_name1 == username.user_name :
-                form.error = "该用户名已被注册！"
-                return render(request,"user_add.html",{'form':form})
-        else:
-            userinfo.objects.create(user_name=user_name1,user_password=user_password1,user_number=user_number1,user_age=user_age1)
-            redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}"
-            return redirect(redirect_url)
+        if form.is_valid():
+            user_name1 = request.POST.get('user_name')
+            user_password1 = request.POST.get('user_password')
+            user_number1 = request.POST.get('user_number')
+            user_age1 = request.POST.get('user_age')
+            username = userinfo.objects.filter(user_name=user_name1).first()
+            if username is not None :
+                if user_name1 == username.user_name :
+                    form.error = "该用户名已被注册！"
+                    return render(request,"user_add.html",{'form':form})
+            else:
+                userinfo.objects.create(user_name=user_name1,user_password=user_password1,user_number=user_number1,user_age=user_age1)
+                redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}"
+                return redirect(redirect_url)
             # return redirect("http://127.0.0.1:8000")
+        else:
+            form.error = "不能有空选项！"
+            return render(request,"user_add.html",{'form':form})
     return render(request,"user_add.html")
+
 
 ##用户界面
 def userinfo1(request):
@@ -139,7 +144,7 @@ def user_login(request):
         # print(form.cleaned_data['user_name'],clean_user_password(form.cleaned_data['user_password']))
         # print(yz)
         if not yz:
-            form.error_password=("密码错误！")
+            form.error_password=("用户名或密码错误！")
             return render(request,"user_login.html",{'form':form})
         else:
             request.session["info"] = {'id':yz.user_id,'name':yz.user_name}

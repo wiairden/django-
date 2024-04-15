@@ -3,21 +3,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
     <title>Document</title>
 </head>
-<body>
+<body class="login-body">
+    <div class="login-container">
     <h1>添加用户</h1>
-    <body>
+    
     <form action="" method="POST">
         {% csrf_token %}
-        用户名：<input type="text" name="user_name">
-        <span style="color:red;" class="error" >{{form.error}}</span>
-        密码：<input type="text" name="user_password">
-        手机号：<input type="text" name="user_number">
-        年龄：<input type="text"name="user_age">
-        <input type="submit" value="注册">
+        <div class="form-group">
+                <label for="username">用户名：</label>
+                <input type="text" id="username" name="user_name">
+                <span style="color:red;" class="error">{{ form.error }}</span>
+            </div>
+            <div class="form-group">
+                <label for="password">密码：</label>
+                <input type="password" id="password" name="user_password">
+            </div>
+            <div class="form-group">
+                <label for="phone">手机号：</label>
+                <input type="text" id="phone" name="user_number">
+            </div>
+            <div class="form-group">
+                <label for="age">年龄：</label>
+                <input type="text" id="age" name="user_age">
+            </div>
+            <input type="submit" class="niceButton2" value="注册">
     </form>
 </body>
-</body>
+</div>
 </html>

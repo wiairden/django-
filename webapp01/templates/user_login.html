@@ -8,19 +8,27 @@
     <title>login</title>
 </head>
 <body>
+    <div class="login-container">
     <h1>用户登录</h1>
-    <body>
+    <body class="login-body">
     <form action="" method="POST" novalidate>
         {% csrf_token %}
-        <lable>用户名：{{form.user_name}}</lable>
-        <span class="error">{{form.error_login}}</span>
-        <lable>密码：{{form.user_password}}</lable>
-        <span class="error">{{form.error_password}}</span>
-        <input type="submit" value="登录">
+         <div class="form-group">
+                <label for="id_user_name">用户名</label>
+                {{ form.user_name }}
+                <span class="error">{{ form.error_login }}</span>
+            </div>
+            <div class="form-group">
+                <label for="id_user_password">密码</label>
+                {{ form.user_password }}
+                <span class="error">{{ form.error_password }}</span>
+            </div>
+            <input type="submit" value="登录">
         {% for message in messages %}
         <div class="error">{{ message }}</div>
     {% endfor %}
     </form>
 </body>
+</div>
 </body>
 </html>
