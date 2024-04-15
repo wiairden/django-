@@ -279,7 +279,9 @@ def del_js_rw(request):
     rw_fb_username1=rw_user.get('name'),
     rw_list1 = rw.objects.filter(rw_fb_username=rw_fb_username1[0])
     rw_list2 = rw.objects.filter(rw_js_username=rw_fb_username1[0])
-    return render(request,"task_mytask.html",{'rw_list':rw_list1,'rw_jslist':rw_list2})
+    redirect_url = f"http://{GLOBAL_IP}:{GLOBAL_PORT}/task/mytask"
+    params = {'rw_list': rw_list1,'rw_jslist':rw_list2}
+    return redirect(redirect_url,params)
 ##完成任务
 def wc_rw(request):
     result = is_login(request)

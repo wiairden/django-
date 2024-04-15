@@ -8,15 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 </head>
-<body>
+<body class="login-body">
+<div class="login-container">
 <h1>添加任务</h1>
 <form action="" method="POST">
         {% csrf_token %}
-        任务名称：<input type="text" name="rw_name">
-        任务内容：<input type="text" name="rw_context">
-        发布日期：<input type="text" name="rw_fb_startdata" value="{{time1}}"  placeholder="{{time1}}">
-        截止日期：<input type="text"name="rw_fb_enddata" value="{{time2}}" placeholder="{{time2}}" >
+        <div class="form-group">
+        <label for="rw_name">任务名称：</label>
+        <input type="text" name="rw_name">
+        <label for="rw_context">任务内容：</label>
+        <input type="text" name="rw_context">
+        <label for="rw_fb_startdata">发布日期：</label>
+        <input type="text" name="rw_fb_startdata" value="{{time1}}"  placeholder="{{time1}}">
+        <label for="rw_fb_enddata">截止日期：</label>
+        <input type="text"name="rw_fb_enddata" value="{{time2}}" placeholder="{{time2}}" >
         <input type="submit" value="发布">
     </form>
 </body>
+</div>
 </html>
